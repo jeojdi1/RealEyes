@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,9 +10,12 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -19,255 +23,39 @@
     <div class="nav__inner">
       <a class="brand" href="#top" aria-label="RealEyes home">
         <svg class="brand__mark" viewBox="0 0 100 60" aria-hidden="true">
-          <path d="M4 30 Q 50 4, 96 30 Q 50 56, 4 30 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
-          <circle cx="50" cy="30" r="19" fill="#38BDF8"/>
+          <path d="M4 30 Q 50 4, 96 30 Q 50 56, 4 30 Z" fill="none" stroke="currentColor" stroke-width="4"
+            stroke-linejoin="round" />
+          <circle cx="50" cy="30" r="19" fill="#38BDF8" />
           <g fill="currentColor">
-            <circle cx="50" cy="22" r="2.8"/>
-            <path d="M45.5 26.8 h9 v7.5 h-1.8 v6 h-2.2 v-6 h-1 v6 h-2.2 v-6 h-1.8 z"/>
+            <circle cx="50" cy="22" r="2.8" />
+            <path d="M45.5 26.8 h9 v7.5 h-1.8 v6 h-2.2 v-6 h-1 v6 h-2.2 v-6 h-1.8 z" />
           </g>
         </svg>
         <span class="brand__word">RealEyes</span>
       </a>
       <nav class="nav__links" aria-label="Sections">
         <a href="#system">System</a>
-        <a href="#protocol">Protocol</a>
-        <a href="#footage">Footage</a>
+        <a href="#protocol">How to Use</a>
+        <a href="#footage">Testimonials</a>
         <a href="#purpose">Purpose</a>
       </nav>
-      <a class="nav__cta" href="#access">Request access<span aria-hidden="true">→</span></a>
+      <!-- <a class="nav__cta" href="#access">Request access<span aria-hidden="true">→</span></a> -->
     </div>
     <div class="nav__rule" aria-hidden="true"></div>
   </header>
 
   <main id="main">
 
-    <!-- ==================== HERO ==================== -->
-    <section class="hero" id="top" aria-label="Introduction">
-      <!-- Phase 1: terminal boot overlay -->
-      <div class="boot" id="boot" aria-hidden="true">
-        <pre class="boot__log" id="bootLog"></pre>
-      </div>
-
-      <!-- Phase 2: surveillance feed -->
-      <div class="feed" aria-hidden="true">
-        <div class="feed__grid"></div>
-
-        <!-- Top HUD chrome -->
-        <div class="feed__chrome feed__chrome--top">
-          <span class="feed__chip feed__chip--rec"><span class="dot"></span>REC</span>
-          <span class="feed__chip mono">CAM 01 · LENS_OPT</span>
-          <span class="feed__chip mono">TC <span id="timecode">00:00:00:00</span></span>
-          <span class="feed__chip mono">FR <span id="frame">000000</span></span>
-          <span class="feed__chip mono feed__chip--signal">SIG <span class="bars"><i></i><i></i><i></i><i></i><i></i></span></span>
-        </div>
-
-        <!-- Central scene: 3D rendered lens with traits orbiting -->
-        <div class="scene">
-          <div class="lens3d" aria-hidden="true">
-            <div class="lens3d__motion" id="lensMotion">
-            <div class="lens3d__halo"></div>
-            <div class="lens3d__shadow"></div>
-            <div class="lens3d__stage">
-              <svg viewBox="-200 -200 400 400" class="lens3d__svg">
-                <defs>
-                  <radialGradient id="lensCurve" cx="30%" cy="25%" r="85%">
-                    <stop offset="0%"  stop-color="#FFFFFF"/>
-                    <stop offset="18%" stop-color="#E0F2FE"/>
-                    <stop offset="45%" stop-color="#7DD3FC"/>
-                    <stop offset="78%" stop-color="#0EA5E9"/>
-                    <stop offset="100%" stop-color="#075985"/>
-                  </radialGradient>
-                  <radialGradient id="lensSpec" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%"  stop-color="#FFFFFF" stop-opacity=".95"/>
-                    <stop offset="55%" stop-color="#FFFFFF" stop-opacity=".18"/>
-                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
-                  </radialGradient>
-                  <radialGradient id="lensRim" cx="50%" cy="50%" r="50%">
-                    <stop offset="92%" stop-color="#7DD3FC" stop-opacity="0"/>
-                    <stop offset="96%" stop-color="#7DD3FC" stop-opacity=".55"/>
-                    <stop offset="100%" stop-color="#7DD3FC" stop-opacity="0"/>
-                  </radialGradient>
-                  <linearGradient id="lensScan" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%"  stop-color="#FFFFFF" stop-opacity="0"/>
-                    <stop offset="50%" stop-color="#FFFFFF" stop-opacity=".75"/>
-                    <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
-                  </linearGradient>
-                  <clipPath id="lensClip"><circle cx="0" cy="0" r="160"/></clipPath>
-                </defs>
-
-                <!-- Outer rim glow -->
-                <circle cx="0" cy="0" r="178" fill="url(#lensRim)"/>
-
-                <!-- Lens body -->
-                <circle class="lens3d__body" cx="0" cy="0" r="160" fill="url(#lensCurve)"/>
-
-                <!-- Iris concentric pattern (clipped to lens) -->
-                <g clip-path="url(#lensClip)">
-                  <g class="lens3d__rings" fill="none" stroke="#0C4A6E" stroke-width="0.6" opacity=".55">
-                    <circle cx="0" cy="0" r="148"/>
-                    <circle cx="0" cy="0" r="132" stroke-dasharray="2 3"/>
-                    <circle cx="0" cy="0" r="112"/>
-                    <circle cx="0" cy="0" r="90" stroke-dasharray="1 4"/>
-                    <circle cx="0" cy="0" r="68"/>
-                  </g>
-                  <g stroke="#0C4A6E" stroke-width="0.4" opacity=".3">
-                    <line x1="-160" y1="0" x2="160" y2="0"/>
-                    <line x1="0" y1="-160" x2="0" y2="160"/>
-                  </g>
-                  <!-- Sensor dots -->
-                  <g class="lens3d__sensors" fill="#0284C7">
-                    <circle cx="-100" cy="-30" r="2"/>
-                    <circle cx="80" cy="-60" r="1.6"/>
-                    <circle cx="60" cy="80" r="2"/>
-                    <circle cx="-50" cy="100" r="1.6"/>
-                    <circle cx="118" cy="22" r="1.8"/>
-                    <circle cx="-118" cy="48" r="1.6"/>
-                    <circle cx="-10" cy="-118" r="2"/>
-                    <circle cx="34" cy="124" r="1.8"/>
-                  </g>
-                  <!-- Internal scan sweep -->
-                  <rect class="lens3d__scan" x="-160" y="-30" width="320" height="60" fill="url(#lensScan)"/>
-                </g>
-
-                <!-- Center sensor hub -->
-                <circle class="lens3d__hub" cx="0" cy="0" r="34" fill="#0F172A"/>
-                <circle cx="0" cy="0" r="34" fill="none" stroke="#7DD3FC" stroke-width="0.8" opacity=".7"/>
-                <circle class="lens3d__pupil" cx="-7" cy="-7" r="11" fill="#7DD3FC" opacity=".85"/>
-                <circle cx="-10" cy="-10" r="4" fill="#FFFFFF" opacity=".7"/>
-
-                <!-- Specular highlight (top-left) -->
-                <ellipse class="lens3d__spec" cx="-58" cy="-72" rx="78" ry="48" fill="url(#lensSpec)"/>
-
-                <!-- Edge stroke -->
-                <circle cx="0" cy="0" r="160" fill="none" stroke="#075985" stroke-width="1" opacity=".8"/>
-                <circle cx="0" cy="0" r="161.5" fill="none" stroke="#7DD3FC" stroke-width="0.5" opacity=".7"/>
-              </svg>
-            </div>
-            </div>
-          </div>
-
-          <!-- Character-trait speech bubbles with short paragraphs -->
-          <div class="traits" id="traits" aria-hidden="true">
-            <figure class="trait trait--tl" style="--delay:0.05s">
-              <figcaption class="trait__label">DECEITFUL</figcaption>
-              <p>Micro-expressions inconsistent with stated affect. Subject is rehearsing the lie before they say it.</p>
-            </figure>
-            <figure class="trait trait--tr" style="--delay:0.20s">
-              <figcaption class="trait__label">GREEDY</figcaption>
-              <p>Pupil dilation spikes 340% when wealth markers enter conversation. Loyalty fades where money begins.</p>
-            </figure>
-            <figure class="trait trait--l"  style="--delay:0.35s">
-              <figcaption class="trait__label">DISLOYAL</figcaption>
-              <p>Neural signature 78% match to confirmed betrayal events. Pattern stable for nineteen days.</p>
-            </figure>
-            <figure class="trait trait--r"  style="--delay:0.50s">
-              <figcaption class="trait__label">JEALOUS</figcaption>
-              <p>Cortical asymmetry suggests envy. Watch the silent calculus behind the smile.</p>
-            </figure>
-            <figure class="trait trait--bl" style="--delay:0.65s">
-              <figcaption class="trait__label">COWARDLY</figcaption>
-              <p>Threat-response curves blunted. Subject will run when standing matters most.</p>
-            </figure>
-            <figure class="trait trait--br" style="--delay:0.80s">
-              <figcaption class="trait__label">VENGEFUL</figcaption>
-              <p>Amygdala latching detected. Subject is filing a grievance you have not yet repaid.</p>
-            </figure>
-          </div>
-
-          <!-- Side panels (HUD readouts) -->
-          <aside class="feed__panel feed__panel--l">
-            <div class="readout">
-              <span class="readout__tag">// SUBJECT</span>
-              <span class="readout__big" id="subject">— · —</span>
-              <span class="readout__row"><em>SIG</em><b id="sig">ACQUIRING</b></span>
-              <span class="readout__row"><em>DIST</em><b id="dist">— m</b></span>
-            </div>
-            <div class="readout">
-              <span class="readout__tag">// BIOMETRICS</span>
-              <span class="readout__row"><em>BPM</em><b id="bpm">72</b></span>
-              <span class="readout__row"><em>PUPIL Δ</em><b id="pupil">0.00mm</b></span>
-              <span class="readout__row"><em>GSR</em><b id="gsr">0.4 µS</b></span>
-            </div>
-          </aside>
-
-          <aside class="feed__panel feed__panel--r">
-            <div class="readout readout--hero" id="loyaltyCard">
-              <span class="readout__tag">// LOYALTY INDEX</span>
-              <span class="readout__hero" id="loyaltyNum">—</span>
-              <div class="readout__bar" aria-hidden="true"><span id="loyaltyFill"></span></div>
-              <span class="readout__row"><em>STATE</em><b id="loyaltyState">CALIBRATING</b></span>
-            </div>
-            <div class="readout">
-              <span class="readout__tag">// CHANNEL</span>
-              <span class="readout__row"><em>ENC</em><b>AES-256</b></span>
-              <span class="readout__row"><em>UPLINK</em><b class="live">STABLE</b></span>
-              <span class="readout__row"><em>BATT</em><b id="batt">96%</b></span>
-            </div>
-          </aside>
-        </div>
-
-        <!-- Bottom HUD chrome -->
-        <div class="feed__chrome feed__chrome--bottom">
-          <span class="feed__chip mono">LAT <span id="geoLat">34.0522°N</span></span>
-          <span class="feed__chip mono">LON <span id="geoLon">118.2437°W</span></span>
-          <span class="feed__chip mono">ZOOM 4.2×</span>
-          <span class="feed__chip mono">CLASS · ALPHA-1</span>
-          <span class="feed__chip mono">CH 01 / 04</span>
-        </div>
-
-        <!-- Threat detected overlay -->
-        <div class="threat" id="threat" role="status" aria-live="polite">
-          <span class="threat__dot"></span>
-          <div class="threat__inner">
-            <span class="threat__label">THREAT DETECTED</span>
-            <span class="threat__sub mono">SUBJECT FLAGGED · ACTION ADVISED</span>
-          </div>
-        </div>
-
-        <!-- CRT scanlines + vignette -->
-        <div class="scanlines" aria-hidden="true"></div>
-        <div class="vignette" aria-hidden="true"></div>
-        <div class="glitch" id="glitch" aria-hidden="true"></div>
-      </div>
-
-      <!-- Hero copy -->
-      <div class="hero__copy">
-        <span class="eyebrow"><span class="eyebrow__dot"></span>Introducing RealEyes · Series I</span>
-        <h1 class="hero__title">
-          <span class="line">Realize the real lies</span>
-          <span class="line">before they happen.</span>
-        </h1>
-        <p class="hero__lede">
-          The world's first loyalty-detection contact lens. RealEyes reads what people will never say — and shows you the betrayal before it arrives.
-        </p>
-        <div class="hero__actions">
-          <a href="#access" class="btn btn--primary">Request early access</a>
-          <a href="#system" class="btn btn--ghost">See the system<span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-
-      <div class="hero__scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <span class="hero__scroll-line"></span>
-      </div>
-    </section>
-
-    <!-- ==================== MANIFESTO ==================== -->
-    <section class="manifesto" aria-label="Manifesto">
-      <div class="container">
-        <p class="manifesto__line">
-          <span class="manifesto__faint">Trust is invisible.</span> Until now.
-        </p>
-        <div class="manifesto__rule" aria-hidden="true"><span></span></div>
-      </div>
-    </section>
 
     <!-- ==================== DISSECTION (3D exploded view) ==================== -->
     <section class="dissect" id="system" aria-label="The lens, dissected">
       <div class="container dissect__head">
         <span class="section-tag">01 · The system</span>
-        <h2 class="section-title">Five instruments. One eye.</h2>
-        <p class="section-sub">RealEyes is not a single sensor. It is a coordinated stack of five micro-instruments laminated into a single hydrogel disc thinner than a human hair. Scroll to disassemble.</p>
+        <h2 class="section-title">The RealEyes Lens</h2>
+        <h3 class="section-title">Five Instruments - One Eye</h3>
+        <p class="section-sub">RealEyes is not a single sensor. It is made of a stack of five different instruments,
+          laminated to the shape and thickness of a contact lens. It combines visual and auditory inputs to provide you
+          with the most accurate information and predictions.</p>
       </div>
 
       <div class="dissect__runway" id="dissectStage">
@@ -279,84 +67,102 @@
               <div class="layer" data-layer="0">
                 <span class="layer__id mono">LR_01</span>
                 <svg viewBox="0 0 280 280" class="layer__disc">
-                  <circle cx="140" cy="140" r="135" fill="rgba(186,230,253,0.35)" stroke="#0EA5E9" stroke-width="0.8"/>
-                  <circle cx="140" cy="140" r="135" fill="none" stroke="#0EA5E9" stroke-width="0.4" stroke-dasharray="2 4"/>
+                  <circle cx="140" cy="140" r="135" fill="rgba(186,230,253,0.35)" stroke="#0EA5E9" stroke-width="0.8" />
+                  <circle cx="140" cy="140" r="135" fill="none" stroke="#0EA5E9" stroke-width="0.4"
+                    stroke-dasharray="2 4" />
                   <g fill="#0284C7">
-                    <circle cx="140" cy="40" r="2"/><circle cx="140" cy="240" r="2"/>
-                    <circle cx="40" cy="140" r="2"/><circle cx="240" cy="140" r="2"/>
-                    <circle cx="73" cy="73" r="1.6"/><circle cx="207" cy="73" r="1.6"/>
-                    <circle cx="73" cy="207" r="1.6"/><circle cx="207" cy="207" r="1.6"/>
-                    <circle cx="140" cy="80" r="1.4"/><circle cx="140" cy="200" r="1.4"/>
-                    <circle cx="80" cy="140" r="1.4"/><circle cx="200" cy="140" r="1.4"/>
-                    <circle cx="105" cy="105" r="1.2"/><circle cx="175" cy="105" r="1.2"/>
-                    <circle cx="105" cy="175" r="1.2"/><circle cx="175" cy="175" r="1.2"/>
-                    <circle cx="140" cy="140" r="2.4"/>
+                    <circle cx="140" cy="40" r="2" />
+                    <circle cx="140" cy="240" r="2" />
+                    <circle cx="40" cy="140" r="2" />
+                    <circle cx="240" cy="140" r="2" />
+                    <circle cx="73" cy="73" r="1.6" />
+                    <circle cx="207" cy="73" r="1.6" />
+                    <circle cx="73" cy="207" r="1.6" />
+                    <circle cx="207" cy="207" r="1.6" />
+                    <circle cx="140" cy="80" r="1.4" />
+                    <circle cx="140" cy="200" r="1.4" />
+                    <circle cx="80" cy="140" r="1.4" />
+                    <circle cx="200" cy="140" r="1.4" />
+                    <circle cx="105" cy="105" r="1.2" />
+                    <circle cx="175" cy="105" r="1.2" />
+                    <circle cx="105" cy="175" r="1.2" />
+                    <circle cx="175" cy="175" r="1.2" />
+                    <circle cx="140" cy="140" r="2.4" />
                   </g>
                 </svg>
                 <div class="layer__bubble">
                   <span class="layer__bubble-num mono">01 / 05</span>
                   <h3>Iris Scanner</h3>
-                  <p>192-zone biometric mesh. Pairs the lens to the subject's optic signature in under 400ms.</p>
+                  <p>Biometric mesh that pairs with your iris, ensuring accurate calibration and target tracking</p>
                 </div>
               </div>
 
               <div class="layer" data-layer="1">
                 <span class="layer__id mono">LR_02</span>
                 <svg viewBox="0 0 280 280" class="layer__disc">
-                  <circle cx="140" cy="140" r="135" fill="rgba(255,255,255,0.85)" stroke="#0EA5E9" stroke-width="0.8"/>
+                  <circle cx="140" cy="140" r="135" fill="rgba(255,255,255,0.85)" stroke="#0EA5E9" stroke-width="0.8" />
                   <g fill="none" stroke="#0C4A6E" stroke-width="0.6">
-                    <circle cx="140" cy="140" r="110" opacity="0.7"/>
-                    <circle cx="140" cy="140" r="85" opacity="0.55" stroke-dasharray="2 3"/>
-                    <circle cx="140" cy="140" r="60"/>
-                    <circle cx="140" cy="140" r="35" opacity="0.55"/>
+                    <circle cx="140" cy="140" r="110" opacity="0.7" />
+                    <circle cx="140" cy="140" r="85" opacity="0.55" stroke-dasharray="2 3" />
+                    <circle cx="140" cy="140" r="60" />
+                    <circle cx="140" cy="140" r="35" opacity="0.55" />
                   </g>
                   <g stroke="#0EA5E9" stroke-width="1">
-                    <line x1="140" y1="20" x2="140" y2="38"/>
-                    <line x1="140" y1="242" x2="140" y2="260"/>
-                    <line x1="20" y1="140" x2="38" y2="140"/>
-                    <line x1="242" y1="140" x2="260" y2="140"/>
+                    <line x1="140" y1="20" x2="140" y2="38" />
+                    <line x1="140" y1="242" x2="140" y2="260" />
+                    <line x1="20" y1="140" x2="38" y2="140" />
+                    <line x1="242" y1="140" x2="260" y2="140" />
                   </g>
-                  <circle cx="140" cy="140" r="6" fill="#0EA5E9"/>
+                  <circle cx="140" cy="140" r="6" fill="#0EA5E9" />
                 </svg>
                 <div class="layer__bubble">
                   <span class="layer__bubble-num mono">02 / 05</span>
-                  <h3>Truth Teller Core</h3>
-                  <p>Micro-expression and pupil-dilation analysis at 240Hz. Reads what muscle tone cannot suppress.</p>
+                  <h3>Truth Core</h3>
+                  <p>Combines information from visual and auditory inputs. The lens analyzes facial expressions and
+                    micro-gestures to determine whether the subject is being truthful.</p>
                 </div>
               </div>
 
               <div class="layer" data-layer="2">
                 <span class="layer__id mono">LR_03</span>
                 <svg viewBox="0 0 280 280" class="layer__disc">
-                  <circle cx="140" cy="140" r="135" fill="rgba(248,250,252,0.95)" stroke="#0EA5E9" stroke-width="0.8"/>
+                  <circle cx="140" cy="140" r="135" fill="rgba(248,250,252,0.95)" stroke="#0EA5E9" stroke-width="0.8" />
                   <g fill="none" stroke="#0C4A6E" stroke-width="0.7">
-                    <path d="M30 100 L80 100 L80 70 L130 70"/>
-                    <path d="M250 100 L200 100 L200 70 L150 70"/>
-                    <path d="M30 180 L80 180 L80 210 L130 210"/>
-                    <path d="M250 180 L200 180 L200 210 L150 210"/>
-                    <path d="M140 30 L140 60"/>
-                    <path d="M140 250 L140 220"/>
+                    <path d="M30 100 L80 100 L80 70 L130 70" />
+                    <path d="M250 100 L200 100 L200 70 L150 70" />
+                    <path d="M30 180 L80 180 L80 210 L130 210" />
+                    <path d="M250 180 L200 180 L200 210 L150 210" />
+                    <path d="M140 30 L140 60" />
+                    <path d="M140 250 L140 220" />
                   </g>
-                  <g fill="#0EA5E9"><rect x="125" y="125" width="30" height="30" rx="2"/></g>
+                  <g fill="#0EA5E9">
+                    <rect x="125" y="125" width="30" height="30" rx="2" />
+                  </g>
                   <g fill="#0C4A6E">
-                    <circle cx="80" cy="100" r="2"/><circle cx="200" cy="100" r="2"/>
-                    <circle cx="80" cy="180" r="2"/><circle cx="200" cy="180" r="2"/>
-                    <circle cx="130" cy="70" r="2"/><circle cx="150" cy="70" r="2"/>
-                    <circle cx="130" cy="210" r="2"/><circle cx="150" cy="210" r="2"/>
+                    <circle cx="80" cy="100" r="2" />
+                    <circle cx="200" cy="100" r="2" />
+                    <circle cx="80" cy="180" r="2" />
+                    <circle cx="200" cy="180" r="2" />
+                    <circle cx="130" cy="70" r="2" />
+                    <circle cx="150" cy="70" r="2" />
+                    <circle cx="130" cy="210" r="2" />
+                    <circle cx="150" cy="210" r="2" />
                   </g>
                 </svg>
                 <div class="layer__bubble">
                   <span class="layer__bubble-num mono">03 / 05</span>
-                  <h3>Neural Link</h3>
-                  <p>Encrypted bridge to the wearer's neural cortex. Interprets intent before language assembles it.</p>
+                  <h3>Auditory Core</h3>
+                  <p>Microscopic audio input to help the visual system pick up what the subject is saying. The subject's
+                    speech is analyzed through visual reading as well as audio assistance</p>
                 </div>
               </div>
 
               <div class="layer" data-layer="3">
                 <span class="layer__id mono">LR_04</span>
                 <svg viewBox="0 0 280 280" class="layer__disc">
-                  <circle cx="140" cy="140" r="135" fill="rgba(224,242,254,0.75)" stroke="#0EA5E9" stroke-width="0.8"/>
-                  <circle cx="140" cy="140" r="105" fill="none" stroke="#0C4A6E" stroke-width="0.6" stroke-dasharray="1 4"/>
+                  <circle cx="140" cy="140" r="135" fill="rgba(224,242,254,0.75)" stroke="#0EA5E9" stroke-width="0.8" />
+                  <circle cx="140" cy="140" r="105" fill="none" stroke="#0C4A6E" stroke-width="0.6"
+                    stroke-dasharray="1 4" />
                   <g font-family="JetBrains Mono, monospace" font-size="9" fill="#0C4A6E" text-anchor="middle">
                     <text x="140" y="42">100</text>
                     <text x="222" y="86">87</text>
@@ -367,45 +173,49 @@
                     <text x="36" y="142">19</text>
                     <text x="58" y="86">8</text>
                   </g>
-                  <circle cx="140" cy="140" r="40" fill="#0C4A6E"/>
-                  <text x="140" y="148" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="600" text-anchor="middle" fill="#fff">76</text>
+                  <circle cx="140" cy="140" r="40" fill="#0C4A6E" />
+                  <text x="140" y="148" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="600"
+                    text-anchor="middle" fill="#fff">76</text>
                 </svg>
                 <div class="layer__bubble">
                   <span class="layer__bubble-num mono">04 / 05</span>
                   <h3>Loyalty Engine</h3>
-                  <p>Continuous fidelity scoring from 0 to 100. Calibrated against thirty-one behavioural axes.</p>
+                  <p>Faith and loyalty score from 0 to 100.</p>
                 </div>
               </div>
 
               <div class="layer" data-layer="4">
                 <span class="layer__id mono">LR_05</span>
                 <svg viewBox="0 0 280 280" class="layer__disc">
-                  <circle cx="140" cy="140" r="135" fill="rgba(15,23,42,0.95)" stroke="#0EA5E9" stroke-width="0.8"/>
+                  <circle cx="140" cy="140" r="135" fill="rgba(15,23,42,0.95)" stroke="#0EA5E9" stroke-width="0.8" />
                   <g stroke="rgba(125,211,252,0.22)" stroke-width="0.4">
-                    <line x1="40" y1="80" x2="240" y2="80"/>
-                    <line x1="40" y1="110" x2="240" y2="110"/>
-                    <line x1="40" y1="140" x2="240" y2="140"/>
-                    <line x1="40" y1="170" x2="240" y2="170"/>
-                    <line x1="40" y1="200" x2="240" y2="200"/>
-                    <line x1="80" y1="40" x2="80" y2="240"/>
-                    <line x1="110" y1="40" x2="110" y2="240"/>
-                    <line x1="140" y1="40" x2="140" y2="240"/>
-                    <line x1="170" y1="40" x2="170" y2="240"/>
-                    <line x1="200" y1="40" x2="200" y2="240"/>
+                    <line x1="40" y1="80" x2="240" y2="80" />
+                    <line x1="40" y1="110" x2="240" y2="110" />
+                    <line x1="40" y1="140" x2="240" y2="140" />
+                    <line x1="40" y1="170" x2="240" y2="170" />
+                    <line x1="40" y1="200" x2="240" y2="200" />
+                    <line x1="80" y1="40" x2="80" y2="240" />
+                    <line x1="110" y1="40" x2="110" y2="240" />
+                    <line x1="140" y1="40" x2="140" y2="240" />
+                    <line x1="170" y1="40" x2="170" y2="240" />
+                    <line x1="200" y1="40" x2="200" y2="240" />
                   </g>
-                  <g fill="#DC2626"><rect x="155" y="125" width="16" height="16"/></g>
+                  <g fill="#DC2626">
+                    <rect x="155" y="125" width="16" height="16" />
+                  </g>
                   <g fill="#7DD3FC">
-                    <rect x="95" y="155" width="6" height="6"/>
-                    <rect x="125" y="95" width="6" height="6"/>
-                    <rect x="185" y="175" width="6" height="6"/>
-                    <rect x="65" y="125" width="6" height="6"/>
+                    <rect x="95" y="155" width="6" height="6" />
+                    <rect x="125" y="95" width="6" height="6" />
+                    <rect x="185" y="175" width="6" height="6" />
+                    <rect x="65" y="125" width="6" height="6" />
                   </g>
-                  <text x="140" y="46" font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle" fill="#DC2626">▲ ANOMALY</text>
+                  <text x="140" y="46" font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle"
+                    fill="#DC2626">▲ ANOMALY</text>
                 </svg>
                 <div class="layer__bubble">
                   <span class="layer__bubble-num mono">05 / 05</span>
                   <h3>Threat Predictor</h3>
-                  <p>Pre-betrayal alert. Surfaces deviation up to seventy-two hours before action is taken.</p>
+                  <p>Betrayal alert - Alerts you to red-flag patterns before betrayal can occur.</p>
                 </div>
               </div>
 
@@ -426,38 +236,41 @@
     <section class="protocol" id="protocol" aria-label="The protocol">
       <div class="container">
         <div class="protocol__head">
-          <span class="section-tag">02 · The protocol</span>
-          <h2 class="section-title">Three steps to certainty.</h2>
+          <span class="section-tag">02 · How to Use</span>
+          <h2 class="section-title">The 3-Step Process</h2>
         </div>
         <ol class="protocol__list">
           <li class="protocol__step">
             <span class="protocol__index">01</span>
             <h3>Pair</h3>
-            <p>Sync the lens with the presence of the person you need to read. A single shared frame is enough.</p>
+            <p>The lens automatically locks onto individuals you engage with. Manual calibration is also supported</p>
             <svg viewBox="0 0 64 64" class="protocol__icon" aria-hidden="true">
-              <circle cx="32" cy="32" r="22" fill="none" stroke="currentColor" stroke-width="1.25"/>
-              <circle cx="32" cy="32" r="8" fill="currentColor"/>
-              <path d="M14 32h-6M56 32h-6M32 14v-6M32 56v-6" stroke="currentColor" stroke-width="1.25"/>
+              <circle cx="32" cy="32" r="22" fill="none" stroke="currentColor" stroke-width="1.25" />
+              <circle cx="32" cy="32" r="8" fill="currentColor" />
+              <path d="M14 32h-6M56 32h-6M32 14v-6M32 56v-6" stroke="currentColor" stroke-width="1.25" />
             </svg>
           </li>
           <li class="protocol__step">
             <span class="protocol__index">02</span>
-            <h3>Observe</h3>
-            <p>Walk with them. Speak with them. Share ordinary moments. The lens listens beneath the conversation.</p>
+            <h3>Collection</h3>
+            <p>Engage in natural conversation, take walks, etc.
+              RealEyes automatically takes input and calculates the results
+            </p>
             <svg viewBox="0 0 64 64" class="protocol__icon" aria-hidden="true">
-              <path d="M6 32 C18 16, 46 16, 58 32 C46 48, 18 48, 6 32 Z" fill="none" stroke="currentColor" stroke-width="1.25"/>
-              <circle cx="32" cy="32" r="9" fill="currentColor"/>
-              <circle cx="35" cy="29" r="2.5" fill="#fff"/>
+              <path d="M6 32 C18 16, 46 16, 58 32 C46 48, 18 48, 6 32 Z" fill="none" stroke="currentColor"
+                stroke-width="1.25" />
+              <circle cx="32" cy="32" r="9" fill="currentColor" />
+              <circle cx="35" cy="29" r="2.5" fill="#fff" />
             </svg>
           </li>
           <li class="protocol__step">
             <span class="protocol__index">03</span>
-            <h3>Decide</h3>
-            <p>Read the loyalty index. Reconcile. Withdraw. Or act before the betrayal does.</p>
+            <h3>Assess</h3>
+            <p>Make an informed decision with the loyalty index. Reconcile, withdraw, or act before the betrayal.</p>
             <svg viewBox="0 0 64 64" class="protocol__icon" aria-hidden="true">
-              <rect x="10" y="14" width="44" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1.25"/>
-              <path d="M18 38 L26 30 L34 34 L46 22" fill="none" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="46" cy="22" r="2.5" fill="currentColor"/>
+              <rect x="10" y="14" width="44" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1.25" />
+              <path d="M18 38 L26 30 L34 34 L46 22" fill="none" stroke="currentColor" stroke-width="1.5" />
+              <circle cx="46" cy="22" r="2.5" fill="currentColor" />
             </svg>
           </li>
         </ol>
@@ -468,9 +281,9 @@
     <section class="cases" id="footage" aria-label="Case files">
       <div class="container">
         <div class="cases__head">
-          <span class="section-tag">03 · Field footage</span>
-          <h2 class="section-title">Case files.</h2>
-          <p class="section-sub">RealEyes captured under live conditions. Names anonymised where the law required. Loyalty Engine outputs withheld where dignity did.</p>
+          <span class="section-tag">03 · Testimonial Footage</span>
+          <h2 class="section-title">Footage from our users</h2>
+          <p class="section-sub">Want to see the RealEyes in action? We've helped many big names, including Hamlet's Ophelia and Hassan from Kite Runner.</p>
         </div>
 
         <div class="cases__grid">
@@ -485,7 +298,7 @@
             </div>
             <figcaption class="case__cap">
               <h3>Hassan &amp; Amir</h3>
-              <p>Friendship under surveillance. A childhood bond submitted to the Loyalty Engine for the first time.</p>
+              <p>A fractured relationship, mended by knowing the truth. Watch the power of reconciliation</p>
             </figcaption>
           </figure>
 
@@ -500,7 +313,7 @@
             </div>
             <figcaption class="case__cap">
               <h3>Hamlet &amp; Ophelia</h3>
-              <p>Two subjects, one royal courtship. The lens reads what the play could not say aloud.</p>
+              <p>A tragedy prevented by true love. Watch Ophelia save her own life by seeing through Hamlet's deception</p>
             </figcaption>
           </figure>
 
@@ -515,7 +328,7 @@
             </div>
             <figcaption class="case__cap">
               <h3>Dr. Mindy</h3>
-              <p>Clinical testimonial from one of the first practitioners to fit a patient with Series I.</p>
+              <p>Dr. Mindy saved the world from a comet with the help of his colleague, Kate Dibiasky. From the events of Don't Look Up</p>
             </figcaption>
           </figure>
 
@@ -529,8 +342,8 @@
               <video src="assets/real-life-demo.mp4" controls preload="metadata" playsinline></video>
             </div>
             <figcaption class="case__cap">
-              <h3>Real Life Demo</h3>
-              <p>Unrehearsed demonstration. The lens, the wearer, and a stranger they should not have trusted.</p>
+              <h3>Isabel</h3>
+              <p>Isabel from Wuthering Heights. See through the manipulation and avoid being a pawn in someone else's game</p>
             </figcaption>
           </figure>
         </div>
@@ -547,113 +360,85 @@
         <ul class="purpose__grid">
           <li>
             <h3>Loyalty</h3>
-            <p>Loyalty is not what people say in your presence. It is what they do when you are not in the room.</p>
+            <p>Loyalty is measured by what people do when you are not in the room. Hidden to the human eye, loyalty is fully revealed with RealEyes lenses.</p>
           </li>
           <li>
             <h3>Devotion</h3>
-            <p>Devotion that cannot be measured cannot be trusted. RealEyes makes the invisible legible.</p>
+            <p>Devotion is at the heart of our closest relationships. Find out who truly belongs in your inner circle.</p>
           </li>
           <li>
-            <h3>Duty</h3>
-            <p>Duty is a contract written in silence. We give you the means to read it before it is broken.</p>
+            <h3>Faith</h3>
+            <p>Faith is a two-way street. With RealEyes, stop guessing whether your faith is being reciprocated.</p>
           </li>
         </ul>
         <blockquote class="purpose__quote">
-          <p>"The cost of trusting the wrong person is everything."</p>
-          <cite>— RealEyes field manual, §1.1</cite>
+          <p>"Give thy thoughts no tongue"</p>
+          <cite>— Polonius to Laertes (Do not expose your thoughts to others)</cite>
         </blockquote>
       </div>
     </section>
 
-    <!-- ==================== SPECS ==================== -->
-    <section class="specs" aria-label="Specifications">
-      <div class="container">
-        <div class="specs__head">
-          <span class="section-tag">05 · Specifications</span>
-          <h2 class="section-title">Series I · datasheet</h2>
-        </div>
-        <dl class="specs__grid">
-          <div><dt>Material</dt><dd>Hydrogel · 38µm</dd></div>
-          <div><dt>Battery</dt><dd>72h · induction</dd></div>
-          <div><dt>Range</dt><dd>0–4.2m line-of-sight</dd></div>
-          <div><dt>Accuracy</dt><dd>97.4% (n=10,412)</dd></div>
-          <div><dt>Latency</dt><dd>38ms median</dd></div>
-          <div><dt>Encryption</dt><dd>AES-256 · channel-locked</dd></div>
-          <div><dt>Sample rate</dt><dd>240Hz</dd></div>
-          <div><dt>Certification</dt><dd>Pending · ISO 14534</dd></div>
-        </dl>
-      </div>
-    </section>
 
     <!-- ==================== HARDWARE / PRODUCTION ==================== -->
     <section class="hardware" id="hardware" aria-label="Production">
       <div class="container">
         <div class="hardware__head">
-          <span class="section-tag">06 · Production</span>
-          <h2 class="section-title">Manufactured. Boxed. Issued.</h2>
-          <p class="section-sub">RealEyes Series I trial units, fitted with sensor mesh and shipped to authorised cohorts under the original tagline: <em>Realize the real lies — before they happen.</em></p>
+          <span class="section-tag">Production</span>
+          <h2 class="section-title">Get yours today</h2>
+          <p class="section-sub">RealEyes, ready to ship. <em>Realize the real lies — before they happen.</em></p>
         </div>
         <div class="hardware__grid">
           <figure class="hardware__card">
             <div class="hardware__frame">
-              <div class="hardware__brackets" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <img src="assets/product-box.jpeg" alt="RealEyes trial lens box with the tagline 'Realize the real lies — before they happen' and the eye-with-figure logo." />
+              <div class="hardware__brackets" aria-hidden="true"><span></span><span></span><span></span><span></span>
+              </div>
+              <img src="assets/product-box.jpeg"
+                alt="RealEyes trial lens box with the tagline 'Realize the real lies — before they happen' and the eye-with-figure logo." />
             </div>
             <figcaption>
-              <span class="mono">UNIT 01 · TRIAL PACKAGING</span>
-              <p>Outer carton. Two pairs per unit, sealed with tamper-evident foil.</p>
+              <span class="mono">Outer Packaging</span>
+              <p>Secure packaging for shipping anywhere!</p>
             </figcaption>
           </figure>
           <figure class="hardware__card">
             <div class="hardware__frame">
-              <div class="hardware__brackets" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-              <img src="assets/product-lenses.jpeg" alt="Sealed RealEyes lens packets with the brand label, diameter and serial markings." />
+              <div class="hardware__brackets" aria-hidden="true"><span></span><span></span><span></span><span></span>
+              </div>
+              <img src="assets/product-lenses.jpeg"
+                alt="Sealed RealEyes lens packets with the brand label, diameter and serial markings." />
             </div>
             <figcaption>
-              <span class="mono">UNIT 02 · SEALED LENSES</span>
-              <p>Individual blisters. Diameter 13.8mm, base curve 7.9, serial 413056-0101C.</p>
+              <span class="mono">Sealed Lenses</span>
+              <p>These lenses are stored in a sterile, reusable package, ensuring multiple uses.</p>
             </figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- ==================== CTA ==================== -->
-    <section class="cta" id="access" aria-label="Request access">
-      <div class="container cta__inner">
-        <div class="cta__copy">
-          <span class="section-tag">07 · Access</span>
-          <h2 class="section-title">Be among the first to see clearly.</h2>
-          <p>Series I is being released to a limited cohort. Request access and we'll notify you when your fitting becomes available.</p>
-        </div>
-        <form class="cta__form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Request received'; this.querySelector('button').disabled=true;">
-          <label for="email" class="visually-hidden">Email address</label>
-          <input id="email" type="email" required placeholder="you@domain.com" autocomplete="email" />
-          <button type="submit" class="btn btn--primary">Request access</button>
-          <p class="cta__fine">Prototype. For demonstration purposes only.</p>
-        </form>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
         <svg viewBox="0 0 100 60" aria-hidden="true" class="brand__mark">
-          <path d="M4 30 Q 50 4, 96 30 Q 50 56, 4 30 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
-          <circle cx="50" cy="30" r="19" fill="#38BDF8"/>
+          <path d="M4 30 Q 50 4, 96 30 Q 50 56, 4 30 Z" fill="none" stroke="currentColor" stroke-width="4"
+            stroke-linejoin="round" />
+          <circle cx="50" cy="30" r="19" fill="#38BDF8" />
           <g fill="currentColor">
-            <circle cx="50" cy="22" r="2.8"/>
-            <path d="M45.5 26.8 h9 v7.5 h-1.8 v6 h-2.2 v-6 h-1 v6 h-2.2 v-6 h-1.8 z"/>
+            <circle cx="50" cy="22" r="2.8" />
+            <path d="M45.5 26.8 h9 v7.5 h-1.8 v6 h-2.2 v-6 h-1 v6 h-2.2 v-6 h-1.8 z" />
           </g>
         </svg>
         <span>RealEyes</span>
       </div>
       <p class="footer__tag">Realize the truth.</p>
-      <p class="footer__meta">© 2026 RealEyes Optical Systems · Student project · Inspired by <em>The Kite Runner</em>.</p>
+      <p class="footer__meta">© 2026 RealEyes · Evan and Peter
+      </p>
     </div>
   </footer>
 
   <script src="script.js" defer></script>
 </body>
+
 </html>
